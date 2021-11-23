@@ -39,6 +39,12 @@ public class Contact {
     public Contact() {
     }
 
+    public Contact(Long id, String firstName, String mobilePhone) {
+        this.id = id;
+        this.firstName = firstName;
+        this.mobilePhone = mobilePhone;
+    }
+
     public Contact(String firstName, String lastName, String mobilePhone) {
         this.firstName = firstName;
         this.lastName = lastName;
