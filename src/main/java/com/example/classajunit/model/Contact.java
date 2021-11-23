@@ -3,8 +3,10 @@ package com.example.classajunit.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "contacts")
 public class Contact {
 
     @Id
@@ -15,6 +17,7 @@ public class Contact {
 
     private String lastName;
 
+    @Column(unique = true)
     private String email;
 
     private String address;
@@ -23,12 +26,16 @@ public class Contact {
 
     private String homePhone;
 
+    @Column(unique = true)
     private String mobilePhone;
 
+    @Column(unique = true)
     private String twitterProfileUrl;
 
+    @Column(unique = true)
     private String facebookProfileUrl;
 
+    @Column(unique = true)
     private String linkedInProfileUrl;
 
     public Contact() {

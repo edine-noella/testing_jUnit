@@ -1,11 +1,9 @@
 package com.example.classajunit.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "items")
 public class Item {
 
 	public Item(int id, String name, int price, int quantity) {
