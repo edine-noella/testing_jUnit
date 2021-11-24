@@ -49,12 +49,30 @@ public class ContactsControllerTest {
     }
 
     @Test
+    public void findById_NotFound_test() throws Exception {
+        when(contactService.findById(anyLong())).thenReturn(null);
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/api/contacts/1").accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request).andExpect(status().isNotFound()).andExpect(content().string("Not Found")).andReturn();
+    }
+
+    @Test
     public void findByMobilePhone_test() throws Exception {
         when(contactService.findByMobilePhone(anyString())).thenReturn(new Contact(1L, "Kaisa", "250783384212"));
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/api/contacts/by-mobile-phone/250783384212").accept(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(request).andExpect(status().isOk()).andReturn();
+    }
+
+    @Test
+    public void findByMobilePhone_NotFound_test() throws Exception {
+        when(contactService.findByMobilePhone(anyString())).thenReturn(null);
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/api/contacts/by-mobile-phone/250783384212").accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request).andExpect(status().isNotFound()).andExpect(content().string("Not Found")).andReturn();
     }
 
     @Test

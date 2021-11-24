@@ -26,7 +26,11 @@ public class ContactController {
 
     @GetMapping("/by-mobile-phone/{mobilePhone}")
     public ResponseEntity<?> findByMobilePhone(@PathVariable String mobilePhone) {
-        return ResponseEntity.ok(contactService.findByMobilePhone(mobilePhone));
+        Contact contact = contactService.findByMobilePhone(mobilePhone);
+        if (contact == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
+
+        return ResponseEntity.ok(contact);
     }
 
     @GetMapping("/by-work-phone/{workPhone}")
@@ -41,7 +45,11 @@ public class ContactController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(contactService.findById(id));
+        Contact contact = contactService.findById(id);
+        if (contact == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
+
+        return ResponseEntity.ok(contact);
     }
 
     @PostMapping("")
