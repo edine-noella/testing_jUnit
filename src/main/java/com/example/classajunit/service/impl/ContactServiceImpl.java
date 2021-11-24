@@ -62,9 +62,14 @@ public class ContactServiceImpl implements IContactService {
 
     @Override
     public void remove(Long id) {
-        if (!contactRepository.existsById(id))
+        if (!existsById(id))
             throw new RuntimeException("Contact with this id is not found");
 
         contactRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return contactRepository.existsById(id);
     }
 }

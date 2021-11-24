@@ -39,7 +39,7 @@ public class ContactsRepositoryTests {
     }
 
     @Test
-    public void findByMobilePhone() {
+    public void findByMobilePhone_test() {
         Optional<Contact> contact = contactRepository.findByMobilePhone("0718888881");
 
         if (!contact.isPresent())
@@ -49,16 +49,27 @@ public class ContactsRepositoryTests {
     }
 
     @Test
-    public void findByWorkPhone() {
+    public void findByWorkPhone_test() {
         List<Contact> contacts = contactRepository.findByWorkPhone("0783384212");
 
         assertEquals(contacts.size(), 3);
     }
 
     @Test
-    public void findByHomePhone() {
+    public void findByHomePhone_test() {
         List<Contact> contacts = contactRepository.findByHomePhone(null);
 
         assertEquals(contacts.size(), 14);
+    }
+
+    @Test
+    public void remove_test(){
+        contactRepository.deleteById(109L);
+
+        List<Contact> contacts = contactRepository.findAll();
+
+        // it would be 14 but I removed 1 now remaining 13
+
+        assertEquals(contacts.size(), 13);
     }
 }

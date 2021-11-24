@@ -21,4 +21,6 @@ public interface IContactService {
     Contact update(Long id, Contact contact);
 
     void remove(Long id);
+
+    boolean existsById(Long id);
 }
