@@ -30,7 +30,7 @@ public class ContactServiceImpl implements IContactService {
     @Override
     public Contact findByMobilePhone(String mobilePhone) {
         return contactRepository.findByMobilePhone(mobilePhone)
-                .orElse(null);
+                .orElseThrow(() -> new CustomException("Contact with this mobile phone not found", HttpStatus.NOT_FOUND));
     }
 
     @Override
@@ -45,7 +45,8 @@ public class ContactServiceImpl implements IContactService {
 
     @Override
     public Contact findById(Long id) {
-        return contactRepository.findById(id).orElse(null);
+        return contactRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Contact with this id not found", HttpStatus.NOT_FOUND));
     }
 
     @Override
