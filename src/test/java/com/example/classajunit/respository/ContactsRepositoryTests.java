@@ -11,8 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.fail;
+import static junit.framework.TestCase.*;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
@@ -71,5 +70,19 @@ public class ContactsRepositoryTests {
         // it would be 14 but I removed 1 now remaining 13
 
         assertEquals(contacts.size(), 13);
+    }
+
+    @Test
+    public void existsByMobilePhone_test(){
+        boolean res = contactRepository.existsByMobilePhone("0788888891");
+
+        assertTrue(res);
+    }
+
+    @Test
+    public void existsByMobilePhone_test_notThere(){
+        boolean res = contactRepository.existsByMobilePhone("0781111891");
+
+        assertFalse(res);
     }
 }
