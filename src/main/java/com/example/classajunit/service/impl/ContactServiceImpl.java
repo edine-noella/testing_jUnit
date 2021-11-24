@@ -64,7 +64,7 @@ public class ContactServiceImpl implements IContactService {
         if (!optionalContact.isPresent())
             throw new CustomException("Contact with this id is not found", HttpStatus.NOT_FOUND);
 
-        if (!(contactRepository.existsByMobilePhone(contact.getMobilePhone()) && optionalContact.get().getMobilePhone().equalsIgnoreCase(contact.getMobilePhone())))
+        if (contactRepository.existsByMobilePhone(contact.getMobilePhone()) && !optionalContact.get().getMobilePhone().equalsIgnoreCase(contact.getMobilePhone()))
             throw new CustomException("Mobile Phone already registered", HttpStatus.BAD_REQUEST);
 
         contact.setId(id);
