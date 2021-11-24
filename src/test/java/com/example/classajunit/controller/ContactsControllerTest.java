@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -96,7 +97,7 @@ public class ContactsControllerTest {
 
     @Test
     public void create_test() throws Exception {
-        when(contactService.create(any(Contact.class))).thenReturn(new Contact(1L, "Kaisa", "250783384212"), new Contact(2L, "Mugabe", "250"));
+        when(contactService.create(any(Contact.class))).thenReturn(new Contact(1L, "Kaisa", "250783384212"));
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/contacts")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -109,7 +110,7 @@ public class ContactsControllerTest {
     @Test
     public void update_test() throws Exception {
 
-        when(contactService.update(anyLong(), any(Contact.class))).thenReturn(new Contact(1L, "Kaisa", "250783384212"), new Contact(2L, "Mugabe", "250"));
+        when(contactService.update(anyLong(), any(Contact.class))).thenReturn(new Contact(2L, "Mugabe", "250"));
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put("/api/contacts/1")
                 .contentType(MediaType.APPLICATION_JSON)

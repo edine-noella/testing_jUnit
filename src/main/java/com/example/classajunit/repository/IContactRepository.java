@@ -15,4 +15,8 @@ public interface IContactRepository extends JpaRepository<Contact, Long> {
     List<Contact> findByWorkPhone(String workPhone);
 
     List<Contact> findByHomePhone(String homePhone);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByMobilePhone(String mobilePhone);
 }

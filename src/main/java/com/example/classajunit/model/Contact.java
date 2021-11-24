@@ -15,7 +15,6 @@ public class Contact {
 
     private String lastName;
 
-    @Column(unique = true)
     private String email;
 
     private String address;
